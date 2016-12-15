@@ -1,8 +1,12 @@
 '''
 Created on Mar 15, 2016
-Vintage model calculation for nano Fe + FeOxides
+Vintage model calculation for nano Fe + FeOx
 @author: rsong_admin
 '''
+
+import sys
+sys.path.append('../packages')
+
 import vintage_model
 import numpy as np
 import csv
@@ -17,8 +21,10 @@ Calculate the average case
 def csv_to_dict(csv_file):
     with open(csv_file,'rU') as myfile:
         this_reader = csv.reader(myfile)
+        # skip the header row
+        next(this_reader, None)
         ''' row[0] is the sector name; row[1] percentage; row[2] average_lifetime; row[3] is the in use release rate '''
-        market_dict = {rows[0]:[rows[1],rows[2],rows[3],rows[4],rows[5],rows[6]] for rows in this_reader}
+        market_dict = {rows[0]:[rows[1],rows[2],rows[3],rows[4],rows[5],rows[6],rows[7]] for rows in this_reader}
     return market_dict
 
 def calculate_defult_Fe():
@@ -27,21 +33,17 @@ def calculate_defult_Fe():
     default in use Rate = 0.33
     '''
     # read data now
-    Fe_data = np.loadtxt('./data/Fe_production_real.csv',delimiter=',')
+    Fe_data = np.loadtxt('../data/Fe_production_real.csv',delimiter=',')
     Fe_to_paints = 0.33 # what portion of SiO2 are used in coating, paints and pigment market
     Fe_data[:,1] = Fe_data[:,1] * Fe_to_paints
-    market_data_dict = csv_to_dict('./data/coating_market_fake.csv')
+    market_data_dict = csv_to_dict('../data/coating_market_fake.csv')
     
-    FeO2_market = vintage_model.vintage_market(Fe_data,market_data_dict)
+    FeO2_market = vintage_model.vintage_market(Fe_data,market_data_dict, weibull=True)
     test = FeO2_market.calculate_market_vintage()
     df = FeO2_market.to_dataframe(test)
     FeO2_market.plot_market_vintage()
-    df.to_csv('./results/Fe_vintage_results.csv')
-#     total = FeO2_market.tot_releases_year()
-#     plt.figure()
-#     plt.plot(total)
-#     plt.show()
-#     return total
+    df.to_csv('../results/dynamic_results/FeOx_vintage_results_1215.csv')
+#     df.to_csv('../results/static_results/FeOx_vintage_results_static_1215.csv')
 
 def do_shake_lifetime():
     data = './data/Fe_production_real.csv'

@@ -5,6 +5,9 @@ A caller to calculate the SiO2 vintage release
 Year 1970 - Year 2020
 @author: rsong_admin
 '''
+import sys
+sys.path.append('../packages')
+
 import vintage_model
 import numpy as np
 import csv
@@ -19,8 +22,10 @@ Calculate the average case
 def csv_to_dict(csv_file):
     with open(csv_file,'rU') as myfile:
         this_reader = csv.reader(myfile)
+        # skip the header row
+        next(this_reader, None)
         ''' row[0] is the sector name; row[1] percentage; row[2] average_lifetime; row[3] is the in use release rate '''
-        market_dict = {rows[0]:[rows[1],rows[2],rows[3],rows[4],rows[5],rows[6]] for rows in this_reader}
+        market_dict = {rows[0]:[rows[1],rows[2],rows[3],rows[4],rows[5],rows[6],rows[7]] for rows in this_reader}
     return market_dict
 
 def calculate_defult_SiO2():
@@ -29,16 +34,17 @@ def calculate_defult_SiO2():
     default market share  = 0.1
     '''
     # read data now
-    SiO2_data = np.loadtxt('./data/SiO2_production_real.csv',delimiter=',')
+    SiO2_data = np.loadtxt('../data/SiO2_production_real.csv',delimiter=',')
     SiO2_to_paints = 0.1 # what portion of SiO2 are used in coating, paints and pigment market
     SiO2_data[:,1] = SiO2_data[:,1] * SiO2_to_paints
-    market_data_dict = csv_to_dict('./data/coating_market_fake.csv')
+    market_data_dict = csv_to_dict('../data/coating_market_fake.csv')
     
-    SiO2_market = vintage_model.vintage_market(SiO2_data,market_data_dict)
+    SiO2_market = vintage_model.vintage_market(SiO2_data,market_data_dict, weibull=True)
     test = SiO2_market.calculate_market_vintage()
     df = SiO2_market.to_dataframe(test)
     SiO2_market.plot_market_vintage()
-    df.to_csv('./results/SiO2_vintage_results.csv')
+    df.to_csv('../results/dynamic_results/SiO2_vintage_results_1215.csv')
+#     df.to_csv('../results/static_results/SiO2_vintage_results_static_1215.csv')
 
 def do_shake_lifetime():
     data = './data/SiO2_production_real.csv'

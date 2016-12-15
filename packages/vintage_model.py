@@ -17,12 +17,14 @@ class vintage_market:
     '''
     A wrapper class to deal with the situation with multiply market
     '''
-    def __init__(self,production_data, market_data_dict):
+    def __init__(self,production_data, market_data_dict, weibull = True):
         self.year_and_prod = production_data
         self.tot_prod = production_data[:,1]
         self.years = production_data[:,0]
         ''' split market data '''
         self._market_splitter(market_data_dict)
+        
+        self.if_weibull = weibull
       
     def _market_splitter(self,market_data_dict):
         '''
@@ -59,10 +61,12 @@ class vintage_market:
             this_repaint_freq = self.market_dict[each_mak][3]
             
             this_prod_data = each_val
-            
-            this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq)
+
+            this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq, weibull=self.if_weibull)
             this_vintage = this_market.calculate_vintage()
+
             self.market_vintage_results[each_mak] = this_vintage 
+
         return self.market_vintage_results
     
     def vintage_of_a_year(self,market_vintage,year=40):
@@ -154,7 +158,7 @@ class vintage:
     The input file must be the annual production data
     The first column is the year and the second column is the production in ton
     '''
-    def __init__(self, production_data, average_lifetime, in_use_release, repaint_freq=5, manufacturing_release=0.02):
+    def __init__(self, production_data, average_lifetime, in_use_release, repaint_freq=5, manufacturing_release=0.02, weibull=True):
         self.prod_data = production_data
         self.apply_to_market = self.prod_data.copy() # to keep track the change of repainting
 
@@ -172,6 +176,8 @@ class vintage:
         
         self.start_year = self.prod_data[0,0]
         self.end_year = self.prod_data[-1,0]
+        
+        self.if_weibull = weibull
         
     def _inUse(self, stock_last, in_use_release_rate):
         '''
@@ -229,7 +235,11 @@ class vintage:
             this_in_use = year_stock[i-1] * self.in_use_rate 
             
             ''' weibull here '''
-            this_weibull = self.weib(year_count, self.x, self.shape) # This is the probability that it goes to end of life at this year (i)
+            if self.if_weibull:
+                this_weibull = self.weib(year_count, self.x, self.shape) # This is the probability that it goes to end of life at this year (i)
+            else: 
+                this_weibull = self.static_release(year_count, self.x)
+            
             this_end_of_life = year_stock[i-1] * (1-self.in_use_rate) * this_weibull
            
             this_total_release = this_in_use + this_end_of_life
@@ -266,14 +276,14 @@ class vintage:
         acc_in_use_release = np.zeros(self.num_year)
         acc_end_of_life_release = np.zeros(self.num_year)
         acc_manu_release = np.zeros(self.num_year)
-
+        acc_year_production = np.zeros(self.num_year)
+        
         for i in range(int(self.num_year)):
             this_year = int(self.prod_data[i,0])
             
-            
             this_year_production_data = self.prod_data[i,1]
             this_year_into_market_data = self.apply_to_market[i,1] 
-            
+
             this_year_vintage = self.vintage_for_year(this_year_into_market_data, this_year)
             
             # add this year vintage to the total vintage dictionary, so that we can query each individual vintage later
@@ -293,10 +303,27 @@ class vintage:
             this_manufacturing_release = self._manu_release(this_year_production_data, self.manu_release)
             acc_manu_release[i] = this_manufacturing_release
             
-        self.acc_vintage ={'Stock':acc_stock, 'In Use':acc_in_use_release,'End of Life':acc_end_of_life_release, 'Manufacturing Release':acc_manu_release}
+            acc_year_production[i] = this_year_production_data
+        self.acc_vintage ={'Stock':acc_stock, 
+                           'In Use':acc_in_use_release,
+                           'End of Life':acc_end_of_life_release, 
+                           'Manufacturing Release':acc_manu_release,
+                           'Production':acc_year_production}
         
         return self.acc_vintage
-            
+    
+    
+    def static_release(self,x,n):
+        '''
+        static distribution function for the static model.
+        return 1 when x== n
+        return 0 other whise
+        '''
+        if int(x) == int(n):
+            return 1
+        else:
+            return 0 
+        
     def weib(self,x,n,a):
         '''
         A weibull distribution generator

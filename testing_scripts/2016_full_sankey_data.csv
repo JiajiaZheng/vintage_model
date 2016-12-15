@@ -1,0 +1,45 @@
+,,0
+Automotive,End of Life Release,249.31154696
+Automotive,In Use Release,3636.4756608
+Construction & Building,End of Life Release,2.138241226
+Construction & Building,In Use Release,28697.948765
+Electronics,End of Life Release,57.725046223
+Electronics,In Use Release,3791.2545872
+FeOx New Production,FeOx Remain in Stock,14223.6734694
+FeOx New Production,Manufacturing Releases,296.32653065
+FeOx in Stock,Automotive,800.76218201
+FeOx in Stock,Construction & Building,5936.65071809
+FeOx in Stock,Electronics,801.02030586
+FeOx in Stock,FeOx Remain in Stock,11524.7058296
+FeOx in Stock,Household & Furniture,1836.61924858
+FeOx in Stock,Medical,1732.98266413
+FeOx in Stock,Other Industries,1326.03397222
+FeOx in Stock,Packaging,810.68367423
+Household & Furniture,End of Life Release,538.34072947
+Household & Furniture,In Use Release,8351.336439
+Medical,End of Life Release,1.811050608
+Medical,In Use Release,8330.926898
+Other Industries,End of Life Release,105.50443946
+Other Industries,In Use Release,6314.4121907
+Packaging,End of Life Release,401.09996624
+Packaging,In Use Release,3463.4347512
+SiO2 New Production,Manufacturing Releases,210.20408163
+SiO2 New Production,SiO2 Remain in Stock,10089.7959184
+SiO2 in Stock,Automotive,564.56188836
+SiO2 in Stock,Construction & Building,4180.47835551
+SiO2 in Stock,Electronics,561.125787083
+SiO2 in Stock,Household & Furniture,1283.29790967
+SiO2 in Stock,Medical,1214.64405643
+SiO2 in Stock,Other Industries,935.00162568
+SiO2 in Stock,Packaging,564.60771324
+SiO2 in Stock,SiO2 Remain in Stock,8099.04713325
+TiO2 New Production,Manufacturing Releases,612.24489798
+TiO2 New Production,TiO2 Remain in Stock,29387.755102
+TiO2 in Stock (all uses),Automotive,1660.6126597
+TiO2 in Stock (all uses),Construction & Building,12259.8043254
+TiO2 in Stock (all uses),Electronics,1643.92692317
+TiO2 in Stock (all uses),Household & Furniture,3803.1896294
+TiO2 in Stock (all uses),Medical,3559.04694609
+TiO2 in Stock (all uses),Other Industries,2742.45750224
+TiO2 in Stock (all uses),Packaging,1649.9635021
+TiO2 in Stock (all uses),TiO2 Remain in Stock,23878.9776532

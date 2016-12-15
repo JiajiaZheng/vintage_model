@@ -42,12 +42,13 @@ def calculate_defult_TiO2():
     '''
     
     # set up the model
-    TiO2_market = vintage_model.vintage_market(TiO2_data,market_data_dict)
+    TiO2_market = vintage_model.vintage_market(TiO2_data,market_data_dict, weibull=True)
     test = TiO2_market.calculate_market_vintage()
     
     # save the results to data frame and plot the market figure
     df = TiO2_market.to_dataframe(test)
-#     df.to_csv('./results/TiO2_vintage_results.csv')
+    df.to_csv('../results/dynamic_results/TiO2_vintage_results_1215.csv')
+#     df.to_csv('../results/static_results/TiO2_vintage_results_static_1215.csv')
     TiO2_market.plot_market_vintage()
     
 def do_shake_lifetime():
