@@ -216,18 +216,18 @@ class vintage:
         
         # in use release during application, assume 10% release during the first time of application
         in_use_during_app = data_of_year * 0.1
-        
+
         init_stock = data_of_year * (1-0.1) # This is the initial stock size, plus the in use release
         year_stock[number_of_year] = init_stock # initialization
-        year_in_use[number_of_year] = in_use_during_app # the first in use release happened at the first year
-        
+        year_manu[number_of_year] = in_use_during_app # the first in use release happened at the first year
+       
         repaint_counter = 0 # count if this year is a repainting year
         
         for this_year in range(int(year), int(self.end_year)):
             
             year_count = this_year - int(year)
    
-            i = this_year - self.start_year
+            i = int(this_year - self.start_year)
             i = int(i+1) # starting from the next year after the init year
             repaint_counter += 1 
 
@@ -241,13 +241,13 @@ class vintage:
                 this_weibull = self.static_release(year_count, self.x)
             
             this_end_of_life = year_stock[i-1] * (1-self.in_use_rate) * this_weibull
-           
+  
             this_total_release = this_in_use + this_end_of_life
             
             year_in_use[i] = this_in_use
             year_end_of_life[i] = this_end_of_life
             year_stock[i] = year_stock[i-1] - this_total_release
-            
+                   
             # if this is the repaint year:
             if repaint_counter == self.repaint_freq:
                 
@@ -264,6 +264,7 @@ class vintage:
                 self.apply_to_market[i,1] -= this_period_in_use_loss
                 
         year_dict = {'In Use':year_in_use,"End of Life":year_end_of_life,"Manufacturing Release":year_manu,"Stock":year_stock}
+   
         return year_dict
     
     def calculate_vintage(self):
@@ -316,8 +317,8 @@ class vintage:
     def static_release(self,x,n):
         '''
         static distribution function for the static model.
-        return 1 when x== n
-        return 0 other whise
+        return 1 when x == n
+        return 0 otherwise
         '''
         if int(x) == int(n):
             return 1

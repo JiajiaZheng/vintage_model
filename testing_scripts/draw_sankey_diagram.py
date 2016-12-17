@@ -500,9 +500,9 @@ def draw_detailed_sankey(tio2,sio2,feox, year='2016'):
     
 if __name__ == '__main__':
     # test
-    tio2_df = pd.read_csv('../results/TiO2_vintage_results.csv',index_col=[0,1])
-    sio2_df = pd.read_csv('../results/SiO2_vintage_results.csv',index_col=[0,1])
-    feox_df = pd.read_csv('../results/Fe_vintage_results.csv',index_col=[0,1])
+    tio2_df = pd.read_csv('../results/dynamic_results/TiO2_vintage_results_1215.csv',index_col=[0,1])
+    sio2_df = pd.read_csv('../results/dynamic_results/SiO2_vintage_results_1215.csv',index_col=[0,1])
+    feox_df = pd.read_csv('../results/dynamic_results/FeOx_vintage_results_1215.csv',index_col=[0,1])
 
     sankey_dataframe = draw_full_sankey(tio2_df, sio2_df, feox_df,year='2016')
     sankey_dataframe.transpose().to_csv('2016_full_sankey_data.csv')

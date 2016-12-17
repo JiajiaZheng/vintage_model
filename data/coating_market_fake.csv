@@ -1,7 +1,7 @@
 ,market share,average lifetime,in use release rate,repaint freq.,std of avg. lifetime,lower bound of avg. lifetime,upper bound of avg. lifetime
 Construction & Building,0.45,60,0.5,10,10,40,80
 Automotive,0.06,13,0.5,8,5,4,22
-Household & Furniture,0.14,10,0.5,10,5,2,25
+Household & Furniture,0.14,10,0.5,8,5,2,25
 Medical,0.13,15,0.5,0,6,5,25
 Electronics,0.06,5,0.5,0,2,2,8
 Packaging,0.06,2,0.5,0,2,1,6

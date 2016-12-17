@@ -28,6 +28,8 @@ def lifetime_to_beta(average_lifetime, shape):
     
 if __name__ == '__main__':
     
+ 
+    
     a0 = 0.5
     a1 = 1
     a2 = 2
@@ -39,13 +41,13 @@ if __name__ == '__main__':
     x4 = lifetime_to_beta(a4, 5)
     x8 = lifetime_to_beta(a8, 5)
     year = np.arange(0,10,0.1)
-
+    
     w0 = weib(year,x0,5)
     w1 = weib(year,x1,5)
     w2 = weib(year,x2,5)
     w4 = weib(year,x4,5)
     w8 = weib(year,x8,5)
-    
+     
 #     plt.plot(year,w0,label='t=0.5')
     plt.plot(year,w1,label='t = 1')
     plt.plot(year,w2, label='t = 2')
