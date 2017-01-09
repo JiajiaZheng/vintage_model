@@ -123,10 +123,10 @@ class vintage_market:
             plt.figure()
             for each_mak, each_val in self.market_vintage_results.iteritems():
                 this_tot_release = each_val['In Use']+ each_val['End of Life']
-                plt.plot(self.years, this_tot_release,label = each_mak)
+                plt.plot(self.years, this_tot_release,label = each_mak, linewidth = 2.0)
             plt.legend(loc ='upper left')
             plt.xlabel('Year', fontsize=20, fontweight='bold')
-            plt.ylabel('Total Releases in Tonnes', fontsize=20, fontweight='bold')
+            plt.ylabel('Total Releases in Tons', fontsize=20, fontweight='bold')
             plt.show()
             
         elif args =='End of Life':
