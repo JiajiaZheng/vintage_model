@@ -61,13 +61,32 @@ class vintage_market:
             this_repaint_freq = self.market_dict[each_mak][3]
             
             this_prod_data = each_val
-
+            
             this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq, weibull=self.if_weibull)
             this_vintage = this_market.calculate_vintage()
+            
+            year_2016_prod = this_prod_data[16][1]
 
             self.market_vintage_results[each_mak] = this_vintage 
 
         return self.market_vintage_results
+    
+    def calculate_for_one_vintage(self, year):
+        self.vintage_results_for_one_year = {}
+        
+        for each_mak, each_val in self.prod_dict.iteritems():
+            this_lifetime = self.market_dict[each_mak][1]
+            this_in_use = self.market_dict[each_mak][2]
+            this_repaint_freq = self.market_dict[each_mak][3]
+            
+            this_prod_data = each_val
+            year_2016_prod = this_prod_data[16][1]
+            this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq, weibull=self.if_weibull)
+            
+            this_year_vintage = this_market.vintage_for_year(year_2016_prod, 2016)
+            
+            self.vintage_results_for_one_year[each_mak] = this_year_vintage 
+        return self.vintage_results_for_one_year
     
     def vintage_of_a_year(self,market_vintage,year=40):
         '''
@@ -192,7 +211,7 @@ class vintage:
         '''
         return (prod_year/(1-manu_release_rate)) - prod_year
     
-    def vintage_for_year(self,data_of_year, year):
+    def vintage_for_year(self, data_of_year, year):
         '''
         calculate the vintage for a single year through all the year 
         after it
@@ -284,9 +303,9 @@ class vintage:
             
             this_year_production_data = self.prod_data[i,1]
             this_year_into_market_data = self.apply_to_market[i,1] 
-
-            this_year_vintage = self.vintage_for_year(this_year_into_market_data, this_year)
             
+            this_year_vintage = self.vintage_for_year(this_year_into_market_data, this_year)
+
             # add this year vintage to the total vintage dictionary, so that we can query each individual vintage later
             self.total_vintage[this_year] = this_year_vintage
             

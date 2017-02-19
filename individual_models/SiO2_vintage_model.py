@@ -46,6 +46,23 @@ def calculate_defult_SiO2():
     df.to_csv('../results/dynamic_results/SiO2_vintage_results_1215.csv')
 #     df.to_csv('../results/static_results/SiO2_vintage_results_static_1215.csv')
 
+def get_results_for_one_vintage(year):
+    '''
+    calculate the results for one vintage year
+    '''
+    # read data now
+    SiO2_data = np.loadtxt('../data/SiO2_production_real.csv',delimiter=',')
+    SiO2_to_paints = 0.1 # what portion of SiO2 are used in coating, paints and pigment market
+    SiO2_data[:,1] = SiO2_data[:,1] * SiO2_to_paints
+    market_data_dict = csv_to_dict('../data/coating_market_fake.csv')
+    
+    SiO2_market = vintage_model.vintage_market(SiO2_data,market_data_dict, weibull=True)
+    
+    this_year_vintage = SiO2_market.calculate_for_one_vintage(year=2016)
+    
+    df = SiO2_market.to_dataframe(this_year_vintage)
+    df.to_csv('../results/dynamic_results/year_vintage/SiO2_vintage_2016.csv')
+
 def do_shake_lifetime():
     data = './data/SiO2_production_real.csv'
     market = './data/coating_market_fake.csv'
@@ -65,7 +82,7 @@ def do_release_market():
     print SiO2_market.tot_releases_year()
     SiO2_market.plot_market_vintage('')
     
-    
 if __name__ == '__main__':
-    calculate_defult_SiO2()
+#     calculate_defult_SiO2()
+    get_results_for_one_vintage(2016)
     

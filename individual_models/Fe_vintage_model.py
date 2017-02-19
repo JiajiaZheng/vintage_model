@@ -45,6 +45,23 @@ def calculate_defult_Fe():
     df.to_csv('../results/dynamic_results/FeOx_vintage_results_1215.csv')
 #     df.to_csv('../results/static_results/FeOx_vintage_results_static_1215.csv')
 
+def get_results_for_one_vintage(year):
+    '''
+    calculate the results for one vintage year
+    '''
+    # read data now
+    Fe_data = np.loadtxt('../data/Fe_production_real.csv',delimiter=',')
+    Fe_to_paints = 0.33 # what portion of SiO2 are used in coating, paints and pigment market
+    Fe_data[:,1] = Fe_data[:,1] * Fe_to_paints
+    market_data_dict = csv_to_dict('../data/coating_market_fake.csv')
+    
+    Fe_market = vintage_model.vintage_market(Fe_data,market_data_dict, weibull=True)
+    
+    this_year_vintage = Fe_market.calculate_for_one_vintage(year=2016)
+    
+    df = Fe_market.to_dataframe(this_year_vintage)
+    df.to_csv('../results/dynamic_results/year_vintage/FeOx_vintage_2016.csv')
+
 def do_shake_lifetime():
     data = './data/Fe_production_real.csv'
     market = './data/coating_market_fake.csv'
@@ -65,5 +82,6 @@ def do_release_market():
     Fe_market.plot_market_vintage('In Use')
     
 if __name__ == '__main__':
-    calculate_defult_Fe()
+#     calculate_defult_Fe()
+    get_results_for_one_vintage(2016)
         

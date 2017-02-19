@@ -1,0 +1,30 @@
+,,2016,2017,2018,2019,2020
+Household & Furniture,Manufacturing Release,203.28,0,0,0,0
+Household & Furniture,In Use,0,914.76,457.38,228.6825385,114.2815912
+Household & Furniture,Stock,1829.52,914.76,457.365077,228.5631823,113.9800441
+Household & Furniture,End of Life,0,0,0.014923025,0.119356156,0.301547105
+Automotive,Manufacturing Release,87.12,0,0,0,0
+Automotive,In Use,0,392.04,196.02,98.00913874,48.99767971
+Automotive,Stock,784.08,392.04,196.0182775,97.99535941,48.96281863
+Automotive,End of Life,0,0,0.001722524,0.013779323,0.034861079
+Medical,Manufacturing Release,188.76,0,0,0,0
+Medical,In Use,0,849.42,424.71,212.3540876,106.1697448
+Medical,Stock,1698.84,849.42,424.7081752,212.3394895,106.1328027
+Medical,End of Life,0,0,0.001824813,0.014598052,0.036942079
+Other Industries,Manufacturing Release,145.2,0,0,0,0
+Other Industries,In Use,0,653.4,326.7,490.0498334,245.0209195
+Other Industries,Stock,1306.8,653.4,980.0996669,490.041839,1061.750518
+Other Industries,End of Life,0,0,0.000333105,0.007994475,0.020234814
+Packaging,Manufacturing Release,87.12,0,0,0,0
+Packaging,In Use,0,392.04,196.02,88.21855597,6.639213155
+Packaging,Stock,784.08,392.04,176.4371119,13.27842631,6.252863642
+Packaging,End of Life,0,0,19.58288806,74.94012966,0.386349513
+Electronics,Manufacturing Release,87.12,0,0,0,0
+Electronics,In Use,0,392.04,196.02,97.90769139,48.14150669
+Electronics,Stock,784.08,392.04,195.8153828,96.28301339,44.27160291
+Electronics,End of Life,0,0,0.204617229,1.624677997,3.869903789
+Construction & Building,Manufacturing Release,653.4,0,0,0,0
+Construction & Building,In Use,0,2940.3,1470.15,735.0749969,367.5374738
+Construction & Building,Stock,5880.6,2940.3,1470.149994,735.0749476,367.5373489
+Construction & Building,End of Life,0,0,6.17E-06,4.93E-05,0.000124914
+,,1452,6534,3286.806315,2027.017428,941.4380921
