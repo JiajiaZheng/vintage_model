@@ -63,6 +63,7 @@ def draw_full_sankey(tio2,sio2,feox, year):
     
     # pack value here
     # TiO2 Stock to Household & Furniture
+
     tio2_stk_to_House = tio2[year].loc['Household & Furniture']['In Use'] + tio2[year].loc['Household & Furniture']['End of Life']
     final_dict[('TiO2 in Stock (all uses)','Household & Furniture')] = [tio2_stk_to_House]
     
@@ -500,9 +501,9 @@ def draw_detailed_sankey(tio2,sio2,feox, year='2016'):
     
 if __name__ == '__main__':
     # test
-    tio2_df = pd.read_csv('../results/dynamic_results/TiO2_vintage_results_1215.csv',index_col=[0,1])
-    sio2_df = pd.read_csv('../results/dynamic_results/SiO2_vintage_results_1215.csv',index_col=[0,1])
-    feox_df = pd.read_csv('../results/dynamic_results/FeOx_vintage_results_1215.csv',index_col=[0,1])
+    tio2_df = pd.read_csv('../results/dynamic_results/TiO2_vintage_results_0226.csv',index_col=[0,1])
+    sio2_df = pd.read_csv('../results/dynamic_results/SiO2_vintage_results_0226.csv',index_col=[0,1])
+    feox_df = pd.read_csv('../results/dynamic_results/FeOx_vintage_results_0226.csv',index_col=[0,1])
 
-    sankey_dataframe = draw_full_sankey(tio2_df, sio2_df, feox_df,year='2016')
-    sankey_dataframe.transpose().to_csv('2016_full_sankey_data.csv')
+    sankey_dataframe = draw_detailed_sankey(tio2_df, sio2_df, feox_df,year='2002')
+    sankey_dataframe.transpose().to_csv('2002_partial_sankey_data.csv')

@@ -54,36 +54,34 @@ class vintage_market:
         '''
         assert self.prod_dict is not None
         self.market_vintage_results = {}
-
+ 
         for each_mak, each_val in self.prod_dict.iteritems():
             this_lifetime = self.market_dict[each_mak][1]
             this_in_use = self.market_dict[each_mak][2]
             this_repaint_freq = self.market_dict[each_mak][3]
-            
+             
             this_prod_data = each_val
-            
+             
             this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq, weibull=self.if_weibull)
             this_vintage = this_market.calculate_vintage()
-            
-            year_2016_prod = this_prod_data[16][1]
-
             self.market_vintage_results[each_mak] = this_vintage 
-
+ 
         return self.market_vintage_results
     
     def calculate_for_one_vintage(self, year):
         self.vintage_results_for_one_year = {}
-        
+        this_year = year - 2000
+
         for each_mak, each_val in self.prod_dict.iteritems():
             this_lifetime = self.market_dict[each_mak][1]
             this_in_use = self.market_dict[each_mak][2]
             this_repaint_freq = self.market_dict[each_mak][3]
             
             this_prod_data = each_val
-            year_2016_prod = this_prod_data[16][1]
+            this_year_prod = this_prod_data[this_year][1]
             this_market = vintage(this_prod_data,this_lifetime,this_in_use,repaint_freq=this_repaint_freq, weibull=self.if_weibull)
             
-            this_year_vintage = this_market.vintage_for_year(year_2016_prod, 2016)
+            this_year_vintage = this_market.vintage_for_year(this_year_prod, year)
             
             self.vintage_results_for_one_year[each_mak] = this_year_vintage 
         return self.vintage_results_for_one_year

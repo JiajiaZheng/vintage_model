@@ -1,0 +1,45 @@
+,,0
+Automotive,End of Life Release,1201.0804875
+Automotive,In Use Release,1983.9082298
+Construction & Building,End of Life Release,21.888755927
+Construction & Building,In Use Release,17403.344226
+Electronics,End of Life Release,1681.3785851
+Electronics,In Use Release,1502.5147444
+FeOx New Production,FeOx Remain in Stock,17288.964001
+FeOx New Production,Manufacturing Releases,360.18675
+FeOx in Stock,Automotive,609.1423678
+FeOx in Stock,Construction & Building,3434.50138788
+FeOx in Stock,Electronics,658.8534424
+FeOx in Stock,FeOx Remain in Stock,104850.341521
+FeOx in Stock,Household & Furniture,1410.3931586
+FeOx in Stock,Medical,1155.6448867
+FeOx in Stock,Other Industries,922.3445255
+FeOx in Stock,Packaging,785.3740479
+Household & Furniture,End of Life Release,3094.7618653
+Household & Furniture,In Use Release,4222.0000635
+Medical,End of Life Release,1364.348928
+Medical,In Use Release,4588.2633954
+Other Industries,End of Life Release,996.5859049
+Other Industries,In Use Release,3749.3433131
+Packaging,End of Life Release,2912.1406002
+Packaging,In Use Release,880.1642229
+SiO2 New Production,Manufacturing Releases,236.58654573
+SiO2 New Production,SiO2 Remain in Stock,11356.1541945
+SiO2 in Stock,Automotive,456.9565313
+SiO2 in Stock,Construction & Building,2537.47874749
+SiO2 in Stock,Electronics,463.4693981
+SiO2 in Stock,Household & Furniture,1029.2607848
+SiO2 in Stock,Medical,865.0613716
+SiO2 in Stock,Other Industries,700.488843
+SiO2 in Stock,Packaging,546.0951143
+SiO2 in Stock,SiO2 Remain in Stock,76465.6363215
+TiO2 New Production,Manufacturing Releases,709.2874286
+TiO2 New Production,TiO2 Remain in Stock,34045.7965714
+TiO2 in Stock (all uses),Automotive,1364.016093
+TiO2 in Stock (all uses),Construction & Building,7443.87711722
+TiO2 in Stock (all uses),Electronics,1360.2119657
+TiO2 in Stock (all uses),Household & Furniture,3143.750572
+TiO2 in Stock (all uses),Medical,2543.7754759
+TiO2 in Stock (all uses),Other Industries,2022.7201875
+TiO2 in Stock (all uses),Packaging,1623.1048544
+TiO2 in Stock (all uses),TiO2 Remain in Stock,225309.969125
