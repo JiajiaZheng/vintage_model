@@ -11,6 +11,8 @@ import copy
 from scipy.special import gammaln
 import matplotlib.pylab as plt
 from matplotlib import style
+from matplotlib.pyplot import cm 
+
 style.use('ggplot')
 
 class vintage_market:
@@ -136,14 +138,22 @@ class vintage_market:
         Total Release (defult): will plot out the total release (end of life + in use) for each market
         End of Life: will plot out the end of life release for each market
         '''
+        color=iter(cm.Set1(np.linspace(0,1,7)))
         if args == 'Total Release':
-            plt.figure()
+            fig,ax = plt.subplots(1)
             for each_mak, each_val in self.market_vintage_results.iteritems():
-                this_tot_release = each_val['In Use']+ each_val['End of Life']
-                plt.plot(self.years, this_tot_release,label = each_mak, linewidth = 2.0)
-            plt.legend(loc ='upper left')
+                c=next(color)
+                this_tot_release = each_val['Manufacturing Release']+each_val['In Use']+ each_val['End of Life']
+                ax.plot(self.years, this_tot_release,label = each_mak, linewidth = 2.5,c=c)
+            
+            #order legend
+            handles, labels = ax.get_legend_handles_labels()
+            handles = [handles[6],handles[0],handles[2],handles[3],handles[4],handles[5],handles[1]]
+            labels = [labels[6], labels[0], labels[2],labels[3],labels[4],labels[5],labels[1]]
+            ax.legend(handles,labels,loc='upper left')
             plt.xlabel('Year', fontsize=20, fontweight='bold')
             plt.ylabel('Total Releases in Tons', fontsize=20, fontweight='bold')
+            plt.tick_params(labelsize=14)
             plt.show()
             
         elif args =='End of Life':

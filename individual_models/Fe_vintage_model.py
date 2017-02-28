@@ -42,7 +42,7 @@ def calculate_defult_Fe():
     test = FeO2_market.calculate_market_vintage()
     df = FeO2_market.to_dataframe(test)
     FeO2_market.plot_market_vintage()
-    df.to_csv('../results/dynamic_results/FeOx_vintage_results_1215.csv')
+    df.to_csv('../results/dynamic_results/FeOx_vintage_results_0226.csv')
 #     df.to_csv('../results/static_results/FeOx_vintage_results_static_1215.csv')
 
 def get_results_for_one_vintage(year):
@@ -82,6 +82,6 @@ def do_release_market():
     Fe_market.plot_market_vintage('In Use')
     
 if __name__ == '__main__':
-#     calculate_defult_Fe()
-    get_results_for_one_vintage(2016)
+    calculate_defult_Fe()
+#     get_results_for_one_vintage(2016)
         

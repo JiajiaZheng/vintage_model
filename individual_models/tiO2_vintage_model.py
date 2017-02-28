@@ -46,7 +46,7 @@ def calculate_defult_TiO2():
     
     # save the results to data frame and plot the market figure
     df = TiO2_market.to_dataframe(test)
-    df.to_csv('../results/dynamic_results/TiO2_vintage_results_1215.csv')
+#     df.to_csv('../results/dynamic_results/TiO2_vintage_results_0226.csv')
 #     df.to_csv('../results/static_results/TiO2_vintage_results_static_1215.csv')
     TiO2_market.plot_market_vintage()
 
@@ -88,5 +88,5 @@ def do_release_market():
 
 if __name__ == '__main__':
     # test
-#     calculate_defult_TiO2()
-    get_results_for_one_vintage(2016)
+    calculate_defult_TiO2()
+#     get_results_for_one_vintage(2016)

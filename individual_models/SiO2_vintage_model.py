@@ -43,7 +43,7 @@ def calculate_defult_SiO2():
     test = SiO2_market.calculate_market_vintage()
     df = SiO2_market.to_dataframe(test)
     SiO2_market.plot_market_vintage()
-    df.to_csv('../results/dynamic_results/SiO2_vintage_results_1215.csv')
+    df.to_csv('../results/dynamic_results/SiO2_vintage_results_0226.csv')
 #     df.to_csv('../results/static_results/SiO2_vintage_results_static_1215.csv')
 
 def get_results_for_one_vintage(year):
@@ -83,6 +83,6 @@ def do_release_market():
     SiO2_market.plot_market_vintage('')
     
 if __name__ == '__main__':
-#     calculate_defult_SiO2()
-    get_results_for_one_vintage(2016)
+    calculate_defult_SiO2()
+#     get_results_for_one_vintage(2016)
     
